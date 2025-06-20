@@ -10,7 +10,7 @@ import Cocoa
 
 class BagelConfiguration: NSObject {
 
-    static let netServiceDomain: String = ""
+    static let netServiceDomain: String = "local."
     static let netServiceType: String = "_Bagel._tcp"
     static let netServiceName: String = ""
     static let netServicePort: Int32 = 43435

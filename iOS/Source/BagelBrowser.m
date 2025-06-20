@@ -56,7 +56,11 @@
 
     self.serviceBrowser = [[NSNetServiceBrowser alloc] init];
     [self.serviceBrowser setDelegate:self];
+#if TARGET_IPHONE_SIMULATOR
+    [self connectToLocal];
+#else
     [self.serviceBrowser searchForServicesOfType:self.configuration.netserviceType inDomain:self.configuration.netserviceDomain];
+#endif
 }
 
 - (void)netServiceBrowser:(NSNetServiceBrowser*)serviceBrowser didFindService:(NSNetService*)service moreComing:(BOOL)moreComing
@@ -78,6 +82,34 @@
     [self connectWithService:service];
 }
 
+- (void)netService:(NSNetService *)sender didNotResolve:(NSDictionary<NSString *,NSNumber *> *)errorDict
+{
+    NSLog(@"netService didNotResolve - %@", errorDict);
+}
+
+- (BOOL)connectToLocal
+{
+    BOOL _isConnected = NO;
+
+    GCDAsyncSocket* socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    socket.delegate = self;
+
+    while (!_isConnected) {
+
+        NSError* error = nil;
+        if ([socket connectToHost:@"127.0.0.1" onPort:43435 error:&error]) {
+            [sockets addObject:socket];
+
+            _isConnected = YES;
+
+        } else if (error) {
+            NSLog(@"connectToLocal error - %@", error);
+        }
+    }
+
+    return _isConnected;
+}
+
 - (BOOL)connectWithService:(NSNetService*)service
 {
     BOOL _isConnected = NO;
@@ -96,6 +128,7 @@
             _isConnected = YES;
 
         } else if (error) {
+            NSLog(@"connectWithService error - %@", error);
         }
     }
 
@@ -105,6 +138,11 @@
 - (void)socket:(GCDAsyncSocket*)socket didConnectToHost:(NSString*)host port:(UInt16)port
 {
     [socket readDataToLength:sizeof(uint64_t) withTimeout:-1.0 tag:0];
+}
+
+- (void)socket:(GCDAsyncSocket*)socket didReadData:(NSData *)data withTag:(long)tag
+{
+    NSLog(@"socket didReadData");
 }
 
 - (void)sendPacket:(BagelRequestPacket*)packet
@@ -118,17 +156,17 @@
     }
 
     if (packetData) {
-        
+
         NSMutableData* buffer = [[NSMutableData alloc] init];
-        
+
         uint64_t headerLength = [packetData length];
         [buffer appendBytes:&headerLength length:sizeof(uint64_t)];
         [buffer appendBytes:[packetData bytes] length:[packetData length]];
-        
+
         for (GCDAsyncSocket* socket in sockets) {
             [socket writeData:buffer withTimeout:-1.0 tag:0];
         }
-        
+
     }
 }
 

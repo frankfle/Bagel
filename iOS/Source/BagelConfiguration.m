@@ -61,7 +61,7 @@ static BagelConfiguration* defaultConfiguration;
         defaultConfiguration.device = device;
 
         defaultConfiguration.netservicePort = 43435;
-        defaultConfiguration.netserviceDomain = @"";
+        defaultConfiguration.netserviceDomain = @"local.";
         defaultConfiguration.netserviceType = @"_Bagel._tcp";
         defaultConfiguration.netserviceName = @"";
     }

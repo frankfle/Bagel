@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class PacketsViewController: BaseViewController {
     
@@ -38,12 +37,12 @@ class PacketsViewController: BaseViewController {
     
     override func setup() {
         
-        self.clearButton.image = ThemeImage.clearIcon
+        self.clearButton.image = BagelImages.clearIcon
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.backgroundColor = ThemeColor.controlBackgroundColor
-        self.tableView.gridColor = ThemeColor.gridColor
+        self.tableView.backgroundColor = BagelColors.controlBackground
+        self.tableView.gridColor = BagelColors.gridColor
         
         setupFilterTextFields()
         
@@ -55,15 +54,15 @@ class PacketsViewController: BaseViewController {
     }
     
     private func setupFilterTextFields() {
-        self.addressFilterTextField.backgroundColor = ThemeColor.controlBackgroundColor
+        self.addressFilterTextField.backgroundColor = BagelColors.controlBackground
         self.addressFilterTextField.tag = FilterTags.address.rawValue
         self.addressFilterTextField.delegate = self
         
-        self.statusFilterTextField.backgroundColor = ThemeColor.controlBackgroundColor
+        self.statusFilterTextField.backgroundColor = BagelColors.controlBackground
         self.statusFilterTextField.tag = FilterTags.status.rawValue
         self.statusFilterTextField.delegate = self
         
-        self.methodFilterTextField.backgroundColor = ThemeColor.controlBackgroundColor
+        self.methodFilterTextField.backgroundColor = BagelColors.controlBackground
         self.methodFilterTextField.tag = FilterTags.method.rawValue
         self.methodFilterTextField.delegate = self
     }

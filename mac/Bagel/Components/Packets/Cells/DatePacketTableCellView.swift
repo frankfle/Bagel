@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class DatePacketTableCellView: NSTableCellView {
     
@@ -21,7 +20,7 @@ class DatePacketTableCellView: NSTableCellView {
     }
     
     func refresh(with packet: BagelPacket) {
-        titleTextField.textColor = ThemeColor.secondaryLabelColor
+        titleTextField.textColor = BagelColors.secondaryLabel
         titleTextField.stringValue = packet.requestInfo?.startDate?.readable ?? ""
     }
     

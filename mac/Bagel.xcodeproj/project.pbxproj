@@ -27,9 +27,7 @@
 		BC7E67E9216E192800E1289E /* DataImageRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E67E8216E192800E1289E /* DataImageRepresentation.swift */; };
 		BC7E67EB216E193300E1289E /* DataTextRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E67EA216E193300E1289E /* DataTextRepresentation.swift */; };
 		BC911A422168C00500B755D4 /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC911A412168C00500B755D4 /* NSColor.swift */; };
-		BC911A442168E10F00B755D4 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC911A432168E10F00B755D4 /* LightTheme.swift */; };
 		BC911A472168EB0A00B755D4 /* ContentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC911A462168EB0A00B755D4 /* ContentBar.swift */; };
-		BC911A492168F27700B755D4 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC911A482168F27700B755D4 /* DarkTheme.swift */; };
 		BC9C779721634D3400E8ADE8 /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9C779621634D3400E8ADE8 /* OverviewViewModel.swift */; };
 		BC9C779A21634D4F00E8ADE8 /* KeyValueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9C779921634D4F00E8ADE8 /* KeyValueViewModel.swift */; };
 		BC9C779C21634E7900E8ADE8 /* KeyValueTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9C779B21634E7900E8ADE8 /* KeyValueTableCellView.swift */; };
@@ -136,9 +134,7 @@
 		BC7E67E8216E192800E1289E /* DataImageRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImageRepresentation.swift; sourceTree = "<group>"; };
 		BC7E67EA216E193300E1289E /* DataTextRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTextRepresentation.swift; sourceTree = "<group>"; };
 		BC911A412168C00500B755D4 /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
-		BC911A432168E10F00B755D4 /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		BC911A462168EB0A00B755D4 /* ContentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBar.swift; sourceTree = "<group>"; };
-		BC911A482168F27700B755D4 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		BC9C779621634D3400E8ADE8 /* OverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewModel.swift; sourceTree = "<group>"; };
 		BC9C779921634D4F00E8ADE8 /* KeyValueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueViewModel.swift; sourceTree = "<group>"; };
 		BC9C779B21634E7900E8ADE8 /* KeyValueTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueTableCellView.swift; sourceTree = "<group>"; };
@@ -330,8 +326,6 @@
 			children = (
 				BCF47D03216BA0B400BC144A /* TextStyles.swift */,
 				BC5E76C8216A64DB000F658D /* Theme.swift */,
-				BC911A432168E10F00B755D4 /* LightTheme.swift */,
-				BC911A482168F27700B755D4 /* DarkTheme.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -827,12 +821,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Bagel/Pods-Bagel-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Highlightr/Highlightr.framework",
-				"${BUILT_PRODUCTS_DIR}/macOSThemeKit/macOSThemeKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Highlightr.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/macOSThemeKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -889,8 +881,6 @@
 				BCEB9AA6217C9532008BBF3C /* ContentRepresentation.swift in Sources */,
 				BC911A422168C00500B755D4 /* NSColor.swift in Sources */,
 				BC9C779F2163528E00E8ADE8 /* RequestHeadersViewModel.swift in Sources */,
-				BC911A492168F27700B755D4 /* DarkTheme.swift in Sources */,
-				BC911A442168E10F00B755D4 /* LightTheme.swift in Sources */,
 				BCD0E029210F5E0D00CE5C7B /* ViewController.swift in Sources */,
 				BC1F5B37216746D30045C871 /* FontManager.swift in Sources */,
 				BCA60B522162655000B9DCAD /* FlatTableHeaderCell.swift in Sources */,
@@ -1083,7 +1073,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Bagel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1103,7 +1093,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Bagel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

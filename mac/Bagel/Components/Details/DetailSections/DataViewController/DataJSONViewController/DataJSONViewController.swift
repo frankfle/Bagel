@@ -8,31 +8,28 @@
 
 import Cocoa
 import WebKit
-import macOSThemeKit
 import Highlightr
 
 class DataJSONViewController: BaseViewController {
-    
+
     var viewModel: DataJSONViewModel?
-    
+
     let highlightr = Highlightr()
 
     @IBOutlet var rawTextView: NSTextView!
-    
+
     @IBOutlet weak var rawTextScrollView: NSScrollView!
     @IBOutlet weak var copyToClipboardButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
-    
+
     override func setup() {
-        
-        self.copyToClipboardButton.image = ThemeImage.copyToClipboardIcon
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(changedTheme(_:)), name: .didChangeTheme, object: nil)
-        
+
+        self.copyToClipboardButton.image = BagelImages.copyToClipboardIcon
+
         self.viewModel?.onChange = { [weak self] in
             self?.refresh()
         }
-        
+
         self.refresh()
         self.refreshHighlightrTheme()
     }
@@ -53,18 +50,17 @@ class DataJSONViewController: BaseViewController {
             }
         }
     }
-    
+
     func refreshHighlightrTheme() {
-        if ThemeManager.shared.effectiveTheme === ThemeManager.lightTheme {
-            self.highlightr?.setTheme(to: "github")
-        }else if ThemeManager.shared.effectiveTheme === ThemeManager.darkTheme {
-            self.highlightr?.setTheme(to: "paraiso-dark")
-        }
+        let isDark = self.view.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+        self.highlightr?.setTheme(to: isDark ? "paraiso-dark" : "github")
     }
-    
-    @objc private func changedTheme(_ notification: Notification) {
-        self.refreshHighlightrTheme()
-    }
+
+//    override func viewDidChangeEffectiveAppearance() {
+//        super.viewDidChangeEffectiveAppearance()
+//        self.refreshHighlightrTheme()
+//        self.refresh()
+//    }
 
     @IBAction func copyButtonAction(_ sender: Any) {
         self.viewModel?.copyToClipboard()

@@ -155,3 +155,6 @@ Carthage/Checkouts
 
 ### Mac Stuff
 .DS_Store
+
+### Let's ignore Claude Code stuff
+.claude

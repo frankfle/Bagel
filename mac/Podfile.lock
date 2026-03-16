@@ -1,18 +1,13 @@
 PODS:
-  - CocoaAsyncSocket (7.6.3)
   - Highlightr (2.1.0)
 
 DEPENDENCIES:
-  - CocoaAsyncSocket
   - Highlightr
 
 SPEC REPOS:
-  trunk:
-    - CocoaAsyncSocket
     - Highlightr
 
 SPEC CHECKSUMS:
-  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   Highlightr: 595f3e100737c8de41113385da8bd0b5b65212c6
 
 PODFILE CHECKSUM: 192607d87db29a923c82383a24c6c795d4be1195

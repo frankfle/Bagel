@@ -22,9 +22,7 @@
 #import "BagelBrowser.h"
 #import "BagelConfiguration.h"
 
-@implementation BagelBrowser {
-    NSMutableArray* sockets;
-}
+@implementation BagelBrowser
 
 - (instancetype)initWithConfiguration:(BagelConfiguration*)configuration
 {
@@ -32,6 +30,7 @@
 
     if (self) {
         self.configuration = configuration;
+        self.connections = [[NSMutableArray alloc] init];
         [self startBrowsing];
     }
 
@@ -40,18 +39,16 @@
 
 - (void)startBrowsing
 {
-    if (self.services) {
-        [self.services removeAllObjects];
-
+    if (self.connections) {
+        [self.connections removeAllObjects];
     } else {
-        self.services = [[NSMutableArray alloc] init];
+        self.connections = [[NSMutableArray alloc] init];
     }
 
-    if (sockets) {
-        [sockets removeAllObjects];
-
+    if (self.services) {
+        [self.services removeAllObjects];
     } else {
-        sockets = [[NSMutableArray alloc] init];
+        self.services = [[NSMutableArray alloc] init];
     }
 
     self.serviceBrowser = [[NSNetServiceBrowser alloc] init];
@@ -73,7 +70,6 @@
 
 - (void)netServiceBrowser:(NSNetServiceBrowser*)serviceBrowser didRemoveService:(NSNetService*)service moreComing:(BOOL)moreComing
 {
-
     [self.services removeObject:service];
 }
 
@@ -89,60 +85,59 @@
 
 - (BOOL)connectToLocal
 {
-    BOOL _isConnected = NO;
+    nw_endpoint_t endpoint = nw_endpoint_create_host("127.0.0.1", "43435");
+    nw_parameters_t parameters = nw_parameters_create_secure_tcp(
+        NW_PARAMETERS_DISABLE_PROTOCOL,
+        NW_PARAMETERS_DEFAULT_CONFIGURATION
+    );
 
-    GCDAsyncSocket* socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    socket.delegate = self;
+    nw_connection_t connection = nw_connection_create(endpoint, parameters);
+    [self startConnection:connection];
 
-    while (!_isConnected) {
-
-        NSError* error = nil;
-        if ([socket connectToHost:@"127.0.0.1" onPort:43435 error:&error]) {
-            [sockets addObject:socket];
-
-            _isConnected = YES;
-
-        } else if (error) {
-            NSLog(@"connectToLocal error - %@", error);
-        }
-    }
-
-    return _isConnected;
+    return YES;
 }
 
 - (BOOL)connectWithService:(NSNetService*)service
 {
-    BOOL _isConnected = NO;
+    NSString* host = [service hostName];
+    NSString* port = [NSString stringWithFormat:@"%ld", (long)[service port]];
 
-    NSArray* addresses = [[service addresses] mutableCopy];
-
-    GCDAsyncSocket* socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-
-    while (!_isConnected && [addresses count]) {
-        NSData* address = [addresses objectAtIndex:0];
-
-        NSError* error = nil;
-        if ([socket connectToAddress:address error:&error]) {
-            [sockets addObject:socket];
-
-            _isConnected = YES;
-
-        } else if (error) {
-            NSLog(@"connectWithService error - %@", error);
-        }
+    if (!host) {
+        return NO;
     }
 
-    return _isConnected;
+    nw_endpoint_t endpoint = nw_endpoint_create_host([host UTF8String], [port UTF8String]);
+    nw_parameters_t parameters = nw_parameters_create_secure_tcp(
+        NW_PARAMETERS_DISABLE_PROTOCOL,
+        NW_PARAMETERS_DEFAULT_CONFIGURATION
+    );
+
+    nw_connection_t connection = nw_connection_create(endpoint, parameters);
+    [self startConnection:connection];
+
+    return YES;
 }
 
-- (void)socket:(GCDAsyncSocket*)socket didConnectToHost:(NSString*)host port:(UInt16)port
+- (void)startConnection:(nw_connection_t)connection
 {
-    [socket readDataToLength:sizeof(uint64_t) withTimeout:-1.0 tag:0];
+    [self.connections addObject:connection];
+
+    __weak typeof(self) weakSelf = self;
+
+    nw_connection_set_state_changed_handler(connection, ^(nw_connection_state_t state, nw_error_t error) {
+        if (state == nw_connection_state_failed || state == nw_connection_state_cancelled) {
+            [weakSelf removeConnection:connection];
+        }
+    });
+
+    nw_connection_set_queue(connection, dispatch_get_main_queue());
+    nw_connection_start(connection);
 }
 
-- (void)socket:(GCDAsyncSocket*)socket didReadData:(NSData *)data withTag:(long)tag
+- (void)removeConnection:(nw_connection_t)connection
 {
-    NSLog(@"socket didReadData");
+    nw_connection_cancel(connection);
+    [self.connections removeObject:connection];
 }
 
 - (void)sendPacket:(BagelRequestPacket*)packet
@@ -163,17 +158,27 @@
         [buffer appendBytes:&headerLength length:sizeof(uint64_t)];
         [buffer appendBytes:[packetData bytes] length:[packetData length]];
 
-        for (GCDAsyncSocket* socket in sockets) {
-            [socket writeData:buffer withTimeout:-1.0 tag:0];
+        dispatch_data_t sendData = dispatch_data_create(
+            [buffer bytes],
+            [buffer length],
+            dispatch_get_main_queue(),
+            DISPATCH_DATA_DESTRUCTOR_DEFAULT
+        );
+
+        for (nw_connection_t connection in self.connections) {
+            nw_connection_send(connection, sendData, NW_CONNECTION_DEFAULT_MESSAGE_CONTEXT, true, ^(nw_error_t error) {
+                if (error) {
+                    NSLog(@"Bagel -> Send error: %@", error);
+                }
+            });
         }
 
     }
 }
 
-- (void)socketDidDisconnect:(GCDAsyncSocket*)socket withError:(NSError*)error
+- (void)socketDidDisconnect:(nw_connection_t)connection withError:(NSError*)error
 {
-    [socket setDelegate:nil];
-    [sockets removeObject:socket];
+    [self removeConnection:connection];
 }
 
 - (void)netServiceBrowser:(NSNetServiceBrowser*)aBrowser didNotSearch:(NSDictionary*)userInfo

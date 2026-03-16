@@ -4,18 +4,16 @@ import PackageDescription
 let package = Package(
     name: "Bagel",
     platforms: [
-        .iOS(.v9)
+        .iOS(.v12)
     ],
     products: [
         .library(name: "Bagel", targets: ["Bagel"])
     ],
-    dependencies: [
-        .package(url: "https://github.com/robbiehanson/CocoaAsyncSocket.git", .upToNextMajor(from: "7.6.4")),
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "Bagel",
-            dependencies: ["CocoaAsyncSocket"],
+            dependencies: [],
             path: "iOS/Source",
             publicHeadersPath: ""
         )

@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class OverviewViewController: BaseViewController, DetailSectionProtocol {
     
@@ -23,7 +22,7 @@ class OverviewViewController: BaseViewController, DetailSectionProtocol {
     
     override func setup() {
         
-        self.copyToClipboardButton.image = ThemeImage.copyToClipboardIcon
+        self.copyToClipboardButton.image = BagelImages.copyToClipboardIcon
         
         self.viewModel?.onChange = { [weak self] in
             

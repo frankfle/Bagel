@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class FlatTableHeaderCell: NSTableHeaderCell {
 
@@ -30,7 +29,7 @@ class FlatTableHeaderCell: NSTableHeaderCell {
 
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         
-        ThemeColor.contentBarColor.setFill()
+        BagelColors.contentBar.setFill()
         cellFrame.fill()
         
         let fullRange = NSRange.init(location: 0, length: self.stringValue.count)

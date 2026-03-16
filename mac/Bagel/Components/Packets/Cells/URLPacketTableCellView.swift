@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class URLPacketTableCellView: NSTableCellView {
 
@@ -21,7 +20,7 @@ class URLPacketTableCellView: NSTableCellView {
     }
     
     func refresh(with packet: BagelPacket) {
-        titleTextField.textColor = ThemeColor.labelColor
+        titleTextField.textColor = BagelColors.labelColor
         titleTextField.stringValue = packet.requestInfo?.url ?? ""
     }
     

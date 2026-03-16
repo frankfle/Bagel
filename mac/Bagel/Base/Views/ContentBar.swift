@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class ContentBar: NSBox {
 
@@ -15,13 +14,13 @@ class ContentBar: NSBox {
         super.init(frame: frameRect)
         self.setThemeColor()
     }
-    
+
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
         self.setThemeColor()
     }
-    
+
     func setThemeColor() {
-        self.fillColor = ThemeColor.contentBarColor
+        self.fillColor = BagelColors.contentBar
     }
 }

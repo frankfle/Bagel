@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class ProjectsViewController: BaseViewController {
     
@@ -20,7 +19,7 @@ class ProjectsViewController: BaseViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.backgroundColor = ThemeColor.projectListBackgroundColor
+        self.tableView.backgroundColor = BagelColors.projectListBackground
 
         self.viewModel?.onChange = { [weak self] in
             self?.refresh()

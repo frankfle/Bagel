@@ -56,11 +56,11 @@ class DataJSONViewController: BaseViewController {
         self.highlightr?.setTheme(to: isDark ? "paraiso-dark" : "github")
     }
 
-    override func viewDidChangeEffectiveAppearance() {
-        super.viewDidChangeEffectiveAppearance()
-        self.refreshHighlightrTheme()
-        self.refresh()
-    }
+//    override func viewDidChangeEffectiveAppearance() {
+//        super.viewDidChangeEffectiveAppearance()
+//        self.refreshHighlightrTheme()
+//        self.refresh()
+//    }
 
     @IBAction func copyButtonAction(_ sender: Any) {
         self.viewModel?.copyToClipboard()

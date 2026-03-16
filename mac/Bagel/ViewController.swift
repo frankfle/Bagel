@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class ViewController: NSViewController {
 
@@ -15,19 +14,19 @@ class ViewController: NSViewController {
     var devicesViewController: DevicesViewController?
     var packetsViewController: PacketsViewController?
     var detailVeiwController: DetailViewController?
-    
+
     @IBOutlet weak var projectsBackgroundBox: NSBox!
     @IBOutlet weak var devicesBackgroundBox: NSBox!
     @IBOutlet weak var packetsBackgroundBox: NSBox!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         _ = BagelController.shared
-        
-        self.projectsBackgroundBox.fillColor = ThemeColor.projectListBackgroundColor
-        self.devicesBackgroundBox.fillColor = ThemeColor.deviceListBackgroundColor
-        self.packetsBackgroundBox.fillColor = ThemeColor.packetListAndDetailBackgroundColor
+
+        self.projectsBackgroundBox.fillColor = BagelColors.projectListBackground
+        self.devicesBackgroundBox.fillColor = BagelColors.deviceListBackground
+        self.packetsBackgroundBox.fillColor = BagelColors.packetListAndDetailBackground
         
     }
 

@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class MethodPacketTableCellView: NSTableCellView {
     
@@ -22,20 +21,20 @@ class MethodPacketTableCellView: NSTableCellView {
 
     func refresh(with packet: BagelPacket) {
         
-        var methodColor = ThemeColor.httpMethodDefaultColor
+        var methodColor = BagelColors.httpMethodDefault
 
         if let requestMethod = packet.requestInfo?.requestMethod {
             switch requestMethod {
             case .get:
-                methodColor = ThemeColor.httpMethodGetColor
+                methodColor = BagelColors.httpMethodGet
             case .put:
-                methodColor = ThemeColor.httpMethodPutColor
+                methodColor = BagelColors.httpMethodPut
             case .post:
-                methodColor = ThemeColor.httpMethodPostColor
+                methodColor = BagelColors.httpMethodPost
             case .delete:
-                methodColor = ThemeColor.httpMethodDeleteColor
+                methodColor = BagelColors.httpMethodDelete
             case .patch:
-                methodColor = ThemeColor.httpMethodPatchColor
+                methodColor = BagelColors.httpMethodPatch
             case .head:
                 break
             }

@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class FlatTableRowView: NSTableRowView {
 
@@ -17,7 +16,7 @@ class FlatTableRowView: NSTableRowView {
 
         if self.isSelected {
             
-            ThemeColor.rowSelectedColor.setFill() 
+            BagelColors.rowSelected.setFill()
             
         }else {
             

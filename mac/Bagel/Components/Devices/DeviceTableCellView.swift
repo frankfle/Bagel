@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class DeviceTableCellView: NSTableCellView {
 
@@ -20,7 +19,7 @@ class DeviceTableCellView: NSTableCellView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundBox.fillColor = ThemeColor.deviceRowSelectedColor
+        self.backgroundBox.fillColor = BagelColors.deviceRowSelected
     }
     
     func refresh() {
@@ -32,11 +31,11 @@ class DeviceTableCellView: NSTableCellView {
         if self.isSelected {
             
             self.deviceNameTextField.font = FontManager.mainMediumFont(size: 14)
-            self.deviceNameTextField.textColor = ThemeColor.textColor
+            self.deviceNameTextField.textColor = BagelColors.labelColor
         }else {
             
             self.deviceNameTextField.font = FontManager.mainFont(size: 14)
-            self.deviceNameTextField.textColor = ThemeColor.secondaryLabelColor
+            self.deviceNameTextField.textColor = BagelColors.secondaryLabel
         }
     }
     

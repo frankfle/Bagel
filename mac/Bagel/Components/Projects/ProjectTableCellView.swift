@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class ProjectTableCellView: NSTableCellView {
 
@@ -25,11 +24,11 @@ class ProjectTableCellView: NSTableCellView {
         if self.isSelected {
             
             self.titleTextField.font = FontManager.mainMediumFont(size: 14)
-            self.titleTextField.textColor = ThemeColor.projectTextColor
+            self.titleTextField.textColor = BagelColors.projectText
         }else {
             
             self.titleTextField.font = FontManager.mainFont(size: 14)
-            self.titleTextField.textColor = ThemeColor.secondaryLabelColor
+            self.titleTextField.textColor = BagelColors.secondaryLabel
         }
     }
 }

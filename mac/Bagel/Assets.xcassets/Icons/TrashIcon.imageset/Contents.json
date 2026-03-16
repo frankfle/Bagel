@@ -14,6 +14,39 @@
       "idiom" : "universal",
       "filename" : "TrashIcon@3x.png",
       "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "filename" : "TrashIconDark.png",
+      "scale" : "1x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "filename" : "TrashIconDark@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "filename" : "TrashIconDark@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

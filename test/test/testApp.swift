@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import Bagel
 
 @main
 struct testApp: App {
+
+    init() {
+        Bagel.start()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

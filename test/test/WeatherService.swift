@@ -39,7 +39,7 @@ enum WeatherError: LocalizedError {
 struct WeatherService {
 
     func fetchCurrentWeather() async throws -> WeatherResponse {
-        let url = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true")!
+        let url = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=39.10&longitude=-94.58&current_weather=true")!
         let (data, response) = try await URLSession.shared.data(from: url)
 
         guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {

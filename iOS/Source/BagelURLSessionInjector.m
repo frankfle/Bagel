@@ -111,26 +111,24 @@
 
     - (void)swizzleSessionDidReceiveResponse : (Class) class
 {
-    if (@available(iOS 13.0, *)) {
-        SEL selector = NSSelectorFromString(@"_didReceiveResponse:sniff:rewrite:");
-        Method m = class_getInstanceMethod(class, selector);
+    SEL selectorWithRewrite = NSSelectorFromString(@"_didReceiveResponse:sniff:rewrite:");
+    Method mRewrite = class_getInstanceMethod(class, selectorWithRewrite);
 
-        if (m && [class instancesRespondToSelector:selector]) {
+    if (mRewrite && [class instancesRespondToSelector:selectorWithRewrite]) {
 
-            typedef void (*OriginalIMPBlockType)(id self, SEL _cmd, id arg1, BOOL sniff, BOOL rewrite);
-            OriginalIMPBlockType originalIMPBlock = (OriginalIMPBlockType)method_getImplementation(m);
+        typedef void (*OriginalIMPBlockType)(id self, SEL _cmd, id arg1, BOOL sniff, BOOL rewrite);
+        OriginalIMPBlockType originalIMPBlock = (OriginalIMPBlockType)method_getImplementation(mRewrite);
 
-            __weak BagelURLSessionInjector* weakSelf = self;
+        __weak BagelURLSessionInjector* weakSelf = self;
 
-            void (^swizzledSessionDidReceiveResponse)(id, id, BOOL, BOOL) = ^void(id self, id arg1, BOOL sniff, BOOL rewrite) {
+        void (^swizzledSessionDidReceiveResponse)(id, id, BOOL, BOOL) = ^void(id self, id arg1, BOOL sniff, BOOL rewrite) {
 
-                [weakSelf.delegate urlSessionInjector:weakSelf didReceiveResponse:[self valueForKey:@"task"] response:arg1];
+            [weakSelf.delegate urlSessionInjector:weakSelf didReceiveResponse:[self valueForKey:@"task"] response:arg1];
 
-                originalIMPBlock(self, _cmd, arg1, sniff, rewrite);
-            };
+            originalIMPBlock(self, _cmd, arg1, sniff, rewrite);
+        };
 
-            method_setImplementation(m, imp_implementationWithBlock(swizzledSessionDidReceiveResponse));
-        }
+        method_setImplementation(mRewrite, imp_implementationWithBlock(swizzledSessionDidReceiveResponse));
         return;
     }
 

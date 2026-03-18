@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" /></a>
     <a href="https://github.com/JamitLabs/Accio" alt="Accio">
         <img src="https://img.shields.io/badge/Accio-supported-0A7CF5.svg?style=flat" /></a>
-    <a href="https://github.com/yagiz/Bagel/releases" alt="Version">
+    <a href="https://github.com/frankfle/Bagel/releases" alt="Version">
         <img src="https://img.shields.io/github/release/yagiz/Bagel.svg" /></a>
 </p>
 

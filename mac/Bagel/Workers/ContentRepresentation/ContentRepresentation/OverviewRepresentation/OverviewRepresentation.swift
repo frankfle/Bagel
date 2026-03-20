@@ -26,7 +26,17 @@ class OverviewRepresentation: ContentRepresentation  {
             
             overviewString = overviewString + "Response Code: "
             overviewString = overviewString + (requestInfo.statusCode ?? "")
-            
+
+            if let errorDescription = requestInfo.errorDescription {
+                overviewString = overviewString + "\n\n"
+                overviewString = overviewString + "Error:\n"
+                if let errorDomain = requestInfo.errorDomain, let errorCode = requestInfo.errorCode {
+                    overviewString = overviewString + "Domain: " + errorDomain + "\n"
+                    overviewString = overviewString + "Code: \(errorCode)\n"
+                }
+                overviewString = overviewString + "Description: " + errorDescription
+            }
+
             if let requestURLString = requestInfo.url, let requestURL = URL(string: requestURLString) {
                 
                 let contentRawString = (ContentRepresentationParser.keyValueRepresentation(url: requestURL).rawString ?? "")

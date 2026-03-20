@@ -34,6 +34,10 @@
 
 @property (nonatomic, strong) NSString* statusCode;
 
+@property (nonatomic, strong) NSString* errorDomain;
+@property (nonatomic, strong) NSNumber* errorCode;
+@property (nonatomic, strong) NSString* errorDescription;
+
 @property (nonatomic, strong) NSDate* startDate;
 @property (nonatomic, strong) NSDate* endDate;
 

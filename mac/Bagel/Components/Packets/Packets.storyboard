@@ -152,6 +152,41 @@
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
                                                             </tableColumn>
+                                                            <tableColumn identifier="duration" width="75" minWidth="50" maxWidth="1000" id="dur-Co-L1m">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Duration">
+                                                                    <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                                </tableHeaderCell>
+                                                                <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="dur-dc-Tf1">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <prototypeCellViews>
+                                                                    <tableCellView identifier="DurationPacketTableCellView" focusRingType="none" id="dur-cv-Xk2" customClass="DurationPacketTableCellView" customModule="Bagel" customModuleProvider="target">
+                                                                        <rect key="frame" x="328" y="1" width="75" height="20"/>
+                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                        <subviews>
+                                                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dur-tf-Ab3">
+                                                                                <rect key="frame" x="1" y="3" width="73" height="15"/>
+                                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="" id="dur-tc-Mn4">
+                                                                                    <font key="font" metaFont="cellTitle"/>
+                                                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                </textFieldCell>
+                                                                            </textField>
+                                                                        </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstItem="dur-tf-Ab3" firstAttribute="centerY" secondItem="dur-cv-Xk2" secondAttribute="centerY" id="dur-cy-Ct1"/>
+                                                                            <constraint firstItem="dur-tf-Ab3" firstAttribute="leading" secondItem="dur-cv-Xk2" secondAttribute="leading" constant="3" id="dur-ld-Ct2"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="dur-tf-Ab3" secondAttribute="trailing" constant="3" id="dur-tr-Ct3"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <outlet property="titleTextField" destination="dur-tf-Ab3" id="dur-ol-Ct4"/>
+                                                                        </connections>
+                                                                    </tableCellView>
+                                                                </prototypeCellViews>
+                                                            </tableColumn>
                                                             <tableColumn identifier="date" width="319" minWidth="40" maxWidth="1000" id="d1q-Y2-VXv">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Date">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

@@ -15,6 +15,7 @@ class PacketsViewController: BaseViewController {
         static let method = "method"
         static let url = "url"
         static let date = "date"
+        static let duration = "duration"
     }
     
     enum FilterTags: Int {
@@ -23,6 +24,7 @@ class PacketsViewController: BaseViewController {
     
     static var statusColumnWidth = CGFloat(50.0)
     static var methodColumnWidth = CGFloat(55.0)
+    static var durationColumnWidth = CGFloat(75.0)
     static var dateColumnWidth = CGFloat(150.0)
     
     var viewModel: PacketsViewModel?
@@ -91,7 +93,10 @@ class PacketsViewController: BaseViewController {
                 tableColumn.width = PacketsViewController.methodColumnWidth
             case TableIdentifiers.url:
                 tableColumn.headerCell = FlatTableHeaderCell(textCell: "URL")
-                tableColumn.width = self.view.frame.size.width - PacketsViewController.statusColumnWidth - PacketsViewController.dateColumnWidth - PacketsViewController.methodColumnWidth
+                tableColumn.width = self.view.frame.size.width - PacketsViewController.statusColumnWidth - PacketsViewController.methodColumnWidth - PacketsViewController.durationColumnWidth - PacketsViewController.dateColumnWidth
+            case TableIdentifiers.duration:
+                tableColumn.headerCell = FlatTableHeaderCell(textCell: "Duration")
+                tableColumn.width = PacketsViewController.durationColumnWidth
             case TableIdentifiers.date:
                 tableColumn.headerCell = FlatTableHeaderCell(textCell: "Date")
                 tableColumn.width = PacketsViewController.dateColumnWidth
@@ -134,6 +139,11 @@ extension PacketsViewController: NSTableViewDelegate, NSTableViewDataSource {
             return cell
         case TableIdentifiers.url:
             let cell: URLPacketTableCellView = self.tableView.makeView(withOwner: nil)!
+            cell.packet = self.viewModel?.item(at: row)
+            cell.backgroundStyle = .normal
+            return cell
+        case TableIdentifiers.duration:
+            let cell: DurationPacketTableCellView = self.tableView.makeView(withOwner: nil)!
             cell.packet = self.viewModel?.item(at: row)
             cell.backgroundStyle = .normal
             return cell

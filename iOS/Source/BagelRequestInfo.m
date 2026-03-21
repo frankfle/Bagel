@@ -73,13 +73,13 @@
         }
 
         if ([json objectForKey:@"startDate"]) {
-            NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[json objectForKey:@"startDate"] integerValue]];
+            NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[json objectForKey:@"startDate"] doubleValue]];
 
             self.startDate = date;
         }
 
         if ([json objectForKey:@"endDate"]) {
-            NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[json objectForKey:@"endDate"] integerValue]];
+            NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[json objectForKey:@"endDate"] doubleValue]];
 
             self.endDate = date;
         }
@@ -140,12 +140,12 @@
     }
 
     if (self.startDate) {
-        NSNumber* date = [NSNumber numberWithInteger:[self.startDate timeIntervalSince1970]];
+        NSNumber* date = [NSNumber numberWithDouble:[self.startDate timeIntervalSince1970]];
         [json setObject:date forKey:@"startDate"];
     }
 
     if (self.endDate) {
-        NSNumber* date = [NSNumber numberWithInteger:[self.endDate timeIntervalSince1970]];
+        NSNumber* date = [NSNumber numberWithDouble:[self.endDate timeIntervalSince1970]];
         [json setObject:date forKey:@"endDate"];
     }
 

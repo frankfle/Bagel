@@ -69,7 +69,6 @@
     //iOS9,10,11    : __NSCFURLLocalSessionConnection
 
     Class sessionClass = NSClassFromString(@"__NSCFURLLocalSessionConnection");
-    Class taskClass = NSClassFromString(@"__NSCFURLSessionTask");
 
     if (sessionClass == nil) {
         sessionClass = NSClassFromString(@"__NSCFURLSessionConnection");
@@ -81,9 +80,45 @@
         [self swizzleSessiondDidFinishWithError:sessionClass];
     }
 
-    if (taskClass) {
-        [self swizzleSessionTaskResume:taskClass];
+    // Swizzle resume on ALL NSURLSessionTask subclasses.
+    // The original approach only targeted __NSCFURLSessionTask, but modern
+    // async/await APIs (e.g. URLSession.shared.data(from:)) may use different
+    // internal task subclasses where resume is not inherited from that class.
+    Class baseTaskClass = [NSURLSessionTask class];
+    NSMutableSet *swizzledIMPs = [NSMutableSet new];
+
+    unsigned int numOfClasses;
+    Class *classes = objc_copyClassList(&numOfClasses);
+    for (unsigned int i = 0; i < numOfClasses; i++) {
+        Class cls = classes[i];
+
+        // Walk superclass chain to check if cls is a subclass of NSURLSessionTask
+        Class superclass = class_getSuperclass(cls);
+        BOOL isSubclass = NO;
+        while (superclass) {
+            if (superclass == baseTaskClass) {
+                isSubclass = YES;
+                break;
+            }
+            superclass = class_getSuperclass(superclass);
+        }
+
+        if (!isSubclass) {
+            continue;
+        }
+
+        // Avoid double-swizzling the same IMP (inherited implementations)
+        SEL resumeSel = NSSelectorFromString(@"resume");
+        Method m = class_getInstanceMethod(cls, resumeSel);
+        if (m) {
+            NSValue *impValue = [NSValue valueWithPointer:method_getImplementation(m)];
+            if (![swizzledIMPs containsObject:impValue]) {
+                [swizzledIMPs addObject:impValue];
+                [self swizzleSessionTaskResume:cls];
+            }
+        }
     }
+    free(classes);
 }
 
 - (void)swizzleSessionTaskResume:(Class) class

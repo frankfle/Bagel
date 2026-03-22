@@ -19,16 +19,23 @@ class DurationPacketTableCellView: NSTableCellView {
     }
 
     func refresh(with packet: BagelPacket) {
-        titleTextField.textColor = BagelColors.secondaryLabel
-
         guard let startDate = packet.requestInfo?.startDate,
               let endDate = packet.requestInfo?.endDate else {
+            titleTextField.textColor = BagelColors.secondaryLabel
             titleTextField.stringValue = ""
             return
         }
 
         let duration = endDate.timeIntervalSince(startDate)
         titleTextField.stringValue = Self.formattedDuration(duration)
+
+        if duration < 0.5 {
+            titleTextField.textColor = BagelColors.statusGreen
+        } else if duration < 2.0 {
+            titleTextField.textColor = BagelColors.statusOrange
+        } else {
+            titleTextField.textColor = BagelColors.statusRed
+        }
     }
 
     static func formattedDuration(_ duration: TimeInterval) -> String {

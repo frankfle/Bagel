@@ -19,3 +19,11 @@ The Mac Console (in the `mac` folder) is the main view of the app.  The Mac Cons
 ### Test / POC App
 
 The Test / POC app (in the `test` folder) is a simple reference implentation and test platform for the project.  It has several sample calls you can make to test their display in the Mac Console.  This is included mainly for development, however, so the libary and Mac Console app can be developed independently of another outside codebase.
+
+## Build Commands
+
+Use `build.sh` to clean and build each component:
+
+- `./build.sh mac` — Build the Mac Console app
+- `./build.sh library` — Build the iOS library
+- `./build.sh test` — Build the Test / POC app

@@ -10,16 +10,10 @@ import Cocoa
 
 extension Date {
 
-    private static let readableFormat = "dd/MM/yyyy HH:mm:ss"
     var readable: String {
-        return self.format(dateFormat: Date.readableFormat)
-    }
-    
-    func format(dateFormat: String) -> String {
-        
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat
-        
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .medium
         return dateFormatter.string(from: self)
     }
 }

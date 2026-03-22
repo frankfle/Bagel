@@ -60,14 +60,26 @@
             self.statusCode = [json objectForKey:@"statusCode"];
         }
 
+        if ([json objectForKey:@"errorDomain"]) {
+            self.errorDomain = [json objectForKey:@"errorDomain"];
+        }
+
+        if ([json objectForKey:@"errorCode"]) {
+            self.errorCode = [json objectForKey:@"errorCode"];
+        }
+
+        if ([json objectForKey:@"errorDescription"]) {
+            self.errorDescription = [json objectForKey:@"errorDescription"];
+        }
+
         if ([json objectForKey:@"startDate"]) {
-            NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[json objectForKey:@"startDate"] integerValue]];
+            NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[json objectForKey:@"startDate"] doubleValue]];
 
             self.startDate = date;
         }
 
         if ([json objectForKey:@"endDate"]) {
-            NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[json objectForKey:@"endDate"] integerValue]];
+            NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[json objectForKey:@"endDate"] doubleValue]];
 
             self.endDate = date;
         }
@@ -115,13 +127,25 @@
         [json setObject:self.statusCode forKey:@"statusCode"];
     }
 
+    if (self.errorDomain) {
+        [json setObject:self.errorDomain forKey:@"errorDomain"];
+    }
+
+    if (self.errorCode) {
+        [json setObject:self.errorCode forKey:@"errorCode"];
+    }
+
+    if (self.errorDescription) {
+        [json setObject:self.errorDescription forKey:@"errorDescription"];
+    }
+
     if (self.startDate) {
-        NSNumber* date = [NSNumber numberWithInteger:[self.startDate timeIntervalSince1970]];
+        NSNumber* date = [NSNumber numberWithDouble:[self.startDate timeIntervalSince1970]];
         [json setObject:date forKey:@"startDate"];
     }
 
     if (self.endDate) {
-        NSNumber* date = [NSNumber numberWithInteger:[self.endDate timeIntervalSince1970]];
+        NSNumber* date = [NSNumber numberWithDouble:[self.endDate timeIntervalSince1970]];
         [json setObject:date forKey:@"endDate"];
     }
 

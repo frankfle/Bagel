@@ -23,18 +23,18 @@
 #import "BagelConfiguration.h"
 #import "BagelRequestPacket.h"
 
-@import CocoaAsyncSocket;
+@import Network;
 
-@interface BagelBrowser : NSObject <GCDAsyncSocketDelegate, NSNetServiceDelegate, NSNetServiceBrowserDelegate>
+@interface BagelBrowser : NSObject <NSNetServiceDelegate, NSNetServiceBrowserDelegate>
 
 @property (nonatomic, weak) BagelConfiguration* configuration;
 
 @property (nonatomic, strong) NSMutableArray* services;
 @property (nonatomic, strong) NSNetServiceBrowser* serviceBrowser;
+@property (nonatomic, strong) NSMutableArray<nw_connection_t>* connections;
 
 - (instancetype)initWithConfiguration:(BagelConfiguration*)configuration;
 
 - (void)sendPacket:(BagelRequestPacket*)packet;
 
 @end
-

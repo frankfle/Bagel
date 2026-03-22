@@ -16,8 +16,6 @@ class DataTextViewController: BaseViewController {
     
     override func setup() {
         
-//        self.copyToClipboardButton.image = ThemeImage.clearIcon
-        
         self.viewModel?.onChange = { [weak self] in
             
             self?.refresh()

@@ -10,7 +10,6 @@
 		1191142A21F8B9CB00BFCA48 /* CURLRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191142921F8B9CB00BFCA48 /* CURLRepresentation.swift */; };
 		8A814D05228ECCED0049A64E /* DetailSectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A814D04228ECCED0049A64E /* DetailSectionProtocol.swift */; };
 		8A814D07229025FF0049A64E /* VerticallyCenteredTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A814D06229025FF0049A64E /* VerticallyCenteredTextFieldCell.swift */; };
-		9AAA3A9C54B46F8D2C8DD674 /* Pods_Bagel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E3BE2EECB0984D92EFCA30 /* Pods_Bagel.framework */; };
 		BC1F5B37216746D30045C871 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1F5B36216746D30045C871 /* FontManager.swift */; };
 		BC32643621738AF0006452FE /* KeyValueRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC32643521738AF0006452FE /* KeyValueRepresentation.swift */; };
 		BC5E76C9216A64DB000F658D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5E76C8216A64DB000F658D /* Theme.swift */; };
@@ -27,9 +26,7 @@
 		BC7E67E9216E192800E1289E /* DataImageRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E67E8216E192800E1289E /* DataImageRepresentation.swift */; };
 		BC7E67EB216E193300E1289E /* DataTextRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E67EA216E193300E1289E /* DataTextRepresentation.swift */; };
 		BC911A422168C00500B755D4 /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC911A412168C00500B755D4 /* NSColor.swift */; };
-		BC911A442168E10F00B755D4 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC911A432168E10F00B755D4 /* LightTheme.swift */; };
 		BC911A472168EB0A00B755D4 /* ContentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC911A462168EB0A00B755D4 /* ContentBar.swift */; };
-		BC911A492168F27700B755D4 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC911A482168F27700B755D4 /* DarkTheme.swift */; };
 		BC9C779721634D3400E8ADE8 /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9C779621634D3400E8ADE8 /* OverviewViewModel.swift */; };
 		BC9C779A21634D4F00E8ADE8 /* KeyValueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9C779921634D4F00E8ADE8 /* KeyValueViewModel.swift */; };
 		BC9C779C21634E7900E8ADE8 /* KeyValueTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9C779B21634E7900E8ADE8 /* KeyValueTableCellView.swift */; };
@@ -75,6 +72,7 @@
 		BCEB9AB4217CD264008BBF3C /* Effra_Std_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCEB9AAB217CD25F008BBF3C /* Effra_Std_Rg.ttf */; };
 		BCEB9AB5217CD269008BBF3C /* DroidSansMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCEB9AAC217CD25F008BBF3C /* DroidSansMono.ttf */; };
 		BCEB9AB7217DD546008BBF3C /* DatePacketTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9AB6217DD546008BBF3C /* DatePacketTableCellView.swift */; };
+		AA0000012A000001008BBF3C /* DurationPacketTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000002A000001008BBF3C /* DurationPacketTableCellView.swift */; };
 		BCEB9AB9217DD653008BBF3C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEB9AB8217DD653008BBF3C /* Date.swift */; };
 		BCF47D04216BA0B400BC144A /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF47D03216BA0B400BC144A /* TextStyles.swift */; };
 		BCFB675721D977C2000199ED /* MethodPacketTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB675621D977C2000199ED /* MethodPacketTableCellView.swift */; };
@@ -96,6 +94,7 @@
 		BCFC854C213848FD001EC6D7 /* BagelProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFC854B213848FD001EC6D7 /* BagelProjectModel.swift */; };
 		BCFC854E2138490E001EC6D7 /* BagelDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFC854D2138490E001EC6D7 /* BagelDeviceModel.swift */; };
 		BCFC855021384981001EC6D7 /* BagelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFC854F21384981001EC6D7 /* BagelPacket.swift */; };
+		C7A9FF40C667F5634EF3EA4F /* Pods_Bagel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF9635B0A41242EB08D2F68 /* Pods_Bagel.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,10 +115,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E3BE2EECB0984D92EFCA30 /* Pods_Bagel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bagel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1191142921F8B9CB00BFCA48 /* CURLRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CURLRepresentation.swift; sourceTree = "<group>"; };
 		8A814D04228ECCED0049A64E /* DetailSectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionProtocol.swift; sourceTree = "<group>"; };
 		8A814D06229025FF0049A64E /* VerticallyCenteredTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextFieldCell.swift; sourceTree = "<group>"; };
+		A7465CCB6115350B7F5D52EE /* Pods-Bagel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bagel.release.xcconfig"; path = "Target Support Files/Pods-Bagel/Pods-Bagel.release.xcconfig"; sourceTree = "<group>"; };
+		AEE70B08F64588D022924933 /* Pods-Bagel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bagel.debug.xcconfig"; path = "Target Support Files/Pods-Bagel/Pods-Bagel.debug.xcconfig"; sourceTree = "<group>"; };
 		BC1F5B36216746D30045C871 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		BC32643521738AF0006452FE /* KeyValueRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueRepresentation.swift; sourceTree = "<group>"; };
 		BC5E76C8216A64DB000F658D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -136,9 +136,7 @@
 		BC7E67E8216E192800E1289E /* DataImageRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImageRepresentation.swift; sourceTree = "<group>"; };
 		BC7E67EA216E193300E1289E /* DataTextRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTextRepresentation.swift; sourceTree = "<group>"; };
 		BC911A412168C00500B755D4 /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
-		BC911A432168E10F00B755D4 /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		BC911A462168EB0A00B755D4 /* ContentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBar.swift; sourceTree = "<group>"; };
-		BC911A482168F27700B755D4 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		BC9C779621634D3400E8ADE8 /* OverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewModel.swift; sourceTree = "<group>"; };
 		BC9C779921634D4F00E8ADE8 /* KeyValueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueViewModel.swift; sourceTree = "<group>"; };
 		BC9C779B21634E7900E8ADE8 /* KeyValueTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueTableCellView.swift; sourceTree = "<group>"; };
@@ -191,6 +189,7 @@
 		BCEB9AAE217CD260008BBF3C /* Effra_Std_Lt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Effra_Std_Lt.ttf; sourceTree = "<group>"; };
 		BCEB9AAF217CD260008BBF3C /* Effra_Std_Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Effra_Std_Bd.ttf; sourceTree = "<group>"; };
 		BCEB9AB6217DD546008BBF3C /* DatePacketTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePacketTableCellView.swift; sourceTree = "<group>"; };
+		AA0000002A000001008BBF3C /* DurationPacketTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPacketTableCellView.swift; sourceTree = "<group>"; };
 		BCEB9AB8217DD653008BBF3C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		BCF47D03216BA0B400BC144A /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		BCFB675621D977C2000199ED /* MethodPacketTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodPacketTableCellView.swift; sourceTree = "<group>"; };
@@ -212,8 +211,7 @@
 		BCFC854B213848FD001EC6D7 /* BagelProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagelProjectModel.swift; sourceTree = "<group>"; };
 		BCFC854D2138490E001EC6D7 /* BagelDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagelDeviceModel.swift; sourceTree = "<group>"; };
 		BCFC854F21384981001EC6D7 /* BagelPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagelPacket.swift; sourceTree = "<group>"; };
-		CF8C8D13D8DDE9F8E381A103 /* Pods-Bagel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bagel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bagel/Pods-Bagel.release.xcconfig"; sourceTree = "<group>"; };
-		D3BC1136B2E3E3417E241E77 /* Pods-Bagel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bagel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bagel/Pods-Bagel.debug.xcconfig"; sourceTree = "<group>"; };
+		FCF9635B0A41242EB08D2F68 /* Pods_Bagel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bagel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AAA3A9C54B46F8D2C8DD674 /* Pods_Bagel.framework in Frameworks */,
+				C7A9FF40C667F5634EF3EA4F /* Pods_Bagel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,10 +248,20 @@
 			path = CURLRepresentation;
 			sourceTree = "<group>";
 		};
-		659EF5768D424A8F8EEB1541 /* Frameworks */ = {
+		6BEA6F9C71B45A4A1743F0F6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				00E3BE2EECB0984D92EFCA30 /* Pods_Bagel.framework */,
+				AEE70B08F64588D022924933 /* Pods-Bagel.debug.xcconfig */,
+				A7465CCB6115350B7F5D52EE /* Pods-Bagel.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		833290DAA221D397607BC36B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCF9635B0A41242EB08D2F68 /* Pods_Bagel.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 				BCFB675621D977C2000199ED /* MethodPacketTableCellView.swift */,
 				BCA60B4D2162439E00B9DCAD /* URLPacketTableCellView.swift */,
 				BCEB9AB6217DD546008BBF3C /* DatePacketTableCellView.swift */,
+				AA0000002A000001008BBF3C /* DurationPacketTableCellView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -330,8 +339,6 @@
 			children = (
 				BCF47D03216BA0B400BC144A /* TextStyles.swift */,
 				BC5E76C8216A64DB000F658D /* Theme.swift */,
-				BC911A432168E10F00B755D4 /* LightTheme.swift */,
-				BC911A482168F27700B755D4 /* DarkTheme.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -452,8 +459,8 @@
 				BCD0E038210F5E0D00CE5C7B /* BagelTests */,
 				BCD0E043210F5E0D00CE5C7B /* BagelUITests */,
 				BCD0E024210F5E0D00CE5C7B /* Products */,
-				DE6C4711091F42DCE97894B2 /* Pods */,
-				659EF5768D424A8F8EEB1541 /* Frameworks */,
+				6BEA6F9C71B45A4A1743F0F6 /* Pods */,
+				833290DAA221D397607BC36B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -642,15 +649,6 @@
 			path = BagelController;
 			sourceTree = "<group>";
 		};
-		DE6C4711091F42DCE97894B2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D3BC1136B2E3E3417E241E77 /* Pods-Bagel.debug.xcconfig */,
-				CF8C8D13D8DDE9F8E381A103 /* Pods-Bagel.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -658,11 +656,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCD0E049210F5E0D00CE5C7B /* Build configuration list for PBXNativeTarget "Bagel" */;
 			buildPhases = (
-				0FE167996174E966D4196302 /* [CP] Check Pods Manifest.lock */,
+				78BCC4CCB2B73B0C872BEF23 /* [CP] Check Pods Manifest.lock */,
 				BCD0E01F210F5E0D00CE5C7B /* Sources */,
 				BCD0E020210F5E0D00CE5C7B /* Frameworks */,
 				BCD0E021210F5E0D00CE5C7B /* Resources */,
-				583C57879823A703C3A5CC55 /* [CP] Embed Pods Frameworks */,
+				ED8F674C22397E86A1D914D7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -797,7 +795,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0FE167996174E966D4196302 /* [CP] Check Pods Manifest.lock */ = {
+		78BCC4CCB2B73B0C872BEF23 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -819,22 +817,18 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		583C57879823A703C3A5CC55 /* [CP] Embed Pods Frameworks */ = {
+		ED8F674C22397E86A1D914D7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Bagel/Pods-Bagel-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/Highlightr/Highlightr.framework",
-				"${BUILT_PRODUCTS_DIR}/macOSThemeKit/macOSThemeKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Highlightr.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/macOSThemeKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -875,6 +869,7 @@
 				BC9C77B42163897F00E8ADE8 /* DataJSONViewModel.swift in Sources */,
 				BCBD86E4215916E0009CBEA7 /* BagelProjectController.swift in Sources */,
 				BCEB9AB7217DD546008BBF3C /* DatePacketTableCellView.swift in Sources */,
+				AA0000012A000001008BBF3C /* DurationPacketTableCellView.swift in Sources */,
 				BCFC854021384667001EC6D7 /* ProjectsViewModel.swift in Sources */,
 				BC9C77C5216398CC00E8ADE8 /* ResponseDataViewModel.swift in Sources */,
 				BCB6FD6921627D5400D6F03C /* TransparentSplitView.swift in Sources */,
@@ -891,8 +886,6 @@
 				BCEB9AA6217C9532008BBF3C /* ContentRepresentation.swift in Sources */,
 				BC911A422168C00500B755D4 /* NSColor.swift in Sources */,
 				BC9C779F2163528E00E8ADE8 /* RequestHeadersViewModel.swift in Sources */,
-				BC911A492168F27700B755D4 /* DarkTheme.swift in Sources */,
-				BC911A442168E10F00B755D4 /* LightTheme.swift in Sources */,
 				BCD0E029210F5E0D00CE5C7B /* ViewController.swift in Sources */,
 				BC1F5B37216746D30045C871 /* FontManager.swift in Sources */,
 				BCA60B522162655000B9DCAD /* FlatTableHeaderCell.swift in Sources */,
@@ -1075,7 +1068,7 @@
 		};
 		BCD0E04A210F5E0D00CE5C7B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3BC1136B2E3E3417E241E77 /* Pods-Bagel.debug.xcconfig */;
+			baseConfigurationReference = AEE70B08F64588D022924933 /* Pods-Bagel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Bagel/Bagel.entitlements;
@@ -1085,7 +1078,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Bagel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1095,7 +1088,7 @@
 		};
 		BCD0E04B210F5E0D00CE5C7B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF8C8D13D8DDE9F8E381A103 /* Pods-Bagel.release.xcconfig */;
+			baseConfigurationReference = A7465CCB6115350B7F5D52EE /* Pods-Bagel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Bagel/Bagel.entitlements;
@@ -1105,7 +1098,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Bagel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

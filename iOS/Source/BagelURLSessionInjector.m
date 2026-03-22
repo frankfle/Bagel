@@ -69,7 +69,6 @@
     //iOS9,10,11    : __NSCFURLLocalSessionConnection
 
     Class sessionClass = NSClassFromString(@"__NSCFURLLocalSessionConnection");
-    Class taskClass = NSClassFromString(@"__NSCFURLSessionTask");
 
     if (sessionClass == nil) {
         sessionClass = NSClassFromString(@"__NSCFURLSessionConnection");
@@ -81,9 +80,45 @@
         [self swizzleSessiondDidFinishWithError:sessionClass];
     }
 
-    if (taskClass) {
-        [self swizzleSessionTaskResume:taskClass];
+    // Swizzle resume on ALL NSURLSessionTask subclasses.
+    // The original approach only targeted __NSCFURLSessionTask, but modern
+    // async/await APIs (e.g. URLSession.shared.data(from:)) may use different
+    // internal task subclasses where resume is not inherited from that class.
+    Class baseTaskClass = [NSURLSessionTask class];
+    NSMutableSet *swizzledIMPs = [NSMutableSet new];
+
+    unsigned int numOfClasses;
+    Class *classes = objc_copyClassList(&numOfClasses);
+    for (unsigned int i = 0; i < numOfClasses; i++) {
+        Class cls = classes[i];
+
+        // Walk superclass chain to check if cls is a subclass of NSURLSessionTask
+        Class superclass = class_getSuperclass(cls);
+        BOOL isSubclass = NO;
+        while (superclass) {
+            if (superclass == baseTaskClass) {
+                isSubclass = YES;
+                break;
+            }
+            superclass = class_getSuperclass(superclass);
+        }
+
+        if (!isSubclass) {
+            continue;
+        }
+
+        // Avoid double-swizzling the same IMP (inherited implementations)
+        SEL resumeSel = NSSelectorFromString(@"resume");
+        Method m = class_getInstanceMethod(cls, resumeSel);
+        if (m) {
+            NSValue *impValue = [NSValue valueWithPointer:method_getImplementation(m)];
+            if (![swizzledIMPs containsObject:impValue]) {
+                [swizzledIMPs addObject:impValue];
+                [self swizzleSessionTaskResume:cls];
+            }
+        }
     }
+    free(classes);
 }
 
 - (void)swizzleSessionTaskResume:(Class) class
@@ -111,26 +146,24 @@
 
     - (void)swizzleSessionDidReceiveResponse : (Class) class
 {
-    if (@available(iOS 13.0, *)) {
-        SEL selector = NSSelectorFromString(@"_didReceiveResponse:sniff:rewrite:");
-        Method m = class_getInstanceMethod(class, selector);
+    SEL selectorWithRewrite = NSSelectorFromString(@"_didReceiveResponse:sniff:rewrite:");
+    Method mRewrite = class_getInstanceMethod(class, selectorWithRewrite);
 
-        if (m && [class instancesRespondToSelector:selector]) {
+    if (mRewrite && [class instancesRespondToSelector:selectorWithRewrite]) {
 
-            typedef void (*OriginalIMPBlockType)(id self, SEL _cmd, id arg1, BOOL sniff, BOOL rewrite);
-            OriginalIMPBlockType originalIMPBlock = (OriginalIMPBlockType)method_getImplementation(m);
+        typedef void (*OriginalIMPBlockType)(id self, SEL _cmd, id arg1, BOOL sniff, BOOL rewrite);
+        OriginalIMPBlockType originalIMPBlock = (OriginalIMPBlockType)method_getImplementation(mRewrite);
 
-            __weak BagelURLSessionInjector* weakSelf = self;
+        __weak BagelURLSessionInjector* weakSelf = self;
 
-            void (^swizzledSessionDidReceiveResponse)(id, id, BOOL, BOOL) = ^void(id self, id arg1, BOOL sniff, BOOL rewrite) {
+        void (^swizzledSessionDidReceiveResponse)(id, id, BOOL, BOOL) = ^void(id self, id arg1, BOOL sniff, BOOL rewrite) {
 
-                [weakSelf.delegate urlSessionInjector:weakSelf didReceiveResponse:[self valueForKey:@"task"] response:arg1];
+            [weakSelf.delegate urlSessionInjector:weakSelf didReceiveResponse:[self valueForKey:@"task"] response:arg1];
 
-                originalIMPBlock(self, _cmd, arg1, sniff, rewrite);
-            };
+            originalIMPBlock(self, _cmd, arg1, sniff, rewrite);
+        };
 
-            method_setImplementation(m, imp_implementationWithBlock(swizzledSessionDidReceiveResponse));
-        }
+        method_setImplementation(mRewrite, imp_implementationWithBlock(swizzledSessionDidReceiveResponse));
         return;
     }
 

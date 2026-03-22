@@ -110,6 +110,12 @@
         requestInfo.statusCode = [NSString stringWithFormat:@"%ld", (long)httpURLResponse.statusCode];
     }
 
+    if (self.error) {
+        requestInfo.errorDomain = self.error.domain;
+        requestInfo.errorCode = @(self.error.code);
+        requestInfo.errorDescription = self.error.localizedDescription;
+    }
+
     requestInfo.startDate = self.startDate;
     requestInfo.endDate = self.endDate;
 

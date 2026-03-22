@@ -28,7 +28,11 @@ class BagelRequestInfo: Codable {
     var responseData: String?
     
     var statusCode: String?
-    
+
+    var errorDomain: String?
+    var errorCode: Int?
+    var errorDescription: String?
+
     var startDate: Date?
     var endDate: Date?
 }

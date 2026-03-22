@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import macOSThemeKit
 
 class KeyValueListViewController: BaseViewController, DetailSectionProtocol {
 
@@ -28,12 +27,12 @@ class KeyValueListViewController: BaseViewController, DetailSectionProtocol {
     
     override func setup() {
         
-        self.copyToClipboardButton.image = ThemeImage.copyToClipboardIcon
-        
+        self.copyToClipboardButton.image = BagelImages.copyToClipboardIcon
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.backgroundColor = ThemeColor.controlBackgroundColor
-        self.tableView.gridColor = ThemeColor.gridColor
+        self.tableView.backgroundColor = BagelColors.controlBackground
+        self.tableView.gridColor = BagelColors.gridColor
 
         self.setupTableViewHeaders()
         

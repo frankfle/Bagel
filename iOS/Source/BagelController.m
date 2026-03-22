@@ -26,6 +26,7 @@ static NSString* queueId = @"com.yagiz.bagel.injectController";
 
 @implementation BagelController {
     dispatch_queue_t _queue;
+    NSMutableSet<NSNumber*>* _startedTaskIDs;
 }
 
 - (instancetype)initWithConfiguration:(BagelConfiguration*)configuration
@@ -36,6 +37,7 @@ static NSString* queueId = @"com.yagiz.bagel.injectController";
         
         _queue = dispatch_queue_create((const char*)[queueId UTF8String], DISPATCH_QUEUE_SERIAL);
         self.carriers = [NSMutableArray new];
+        _startedTaskIDs = [NSMutableSet new];
         
         self.configuration = configuration;
 
@@ -91,6 +93,12 @@ static NSString* queueId = @"com.yagiz.bagel.injectController";
 {
     [self performBlock:^{
 
+        NSNumber *taskID = @(dataTask.taskIdentifier);
+        if ([_startedTaskIDs containsObject:taskID]) {
+            return;
+        }
+        [_startedTaskIDs addObject:taskID];
+
         BagelRequestCarrier* carrier = [self carrierWithURLSessionTask:dataTask];
 
         [self sendCarrier:carrier];
@@ -138,9 +146,10 @@ static NSString* queueId = @"com.yagiz.bagel.injectController";
 
         carrier.error = error;
         [carrier complete];
-        
+
         [self sendCarrier:carrier];
         [self.carriers removeObject:carrier];
+        [_startedTaskIDs removeObject:@(dataTask.taskIdentifier)];
         
     }];
 }

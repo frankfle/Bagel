@@ -16,9 +16,7 @@ final class AppStore: ObservableObject {
     @Published var selectedDevice: BagelDeviceController?
     @Published var selectedPacket: BagelPacket?
 
-    @Published var addressFilterTerm: String = ""
-    @Published var methodFilterTerm: String = ""
-    @Published var statusFilterTerm: String = ""
+    @Published var filterTerm: String = ""
 
     // MARK: - Derived State
 
@@ -27,11 +25,14 @@ final class AppStore: ObservableObject {
     var filteredPackets: [BagelPacket] {
         let all = BagelController.shared.selectedProjectController?
             .selectedDeviceController?.packets ?? []
-        return performStatusFiltration(
-            performMethodFiltration(
-                performAddressFiltration(all)
-            )
-        )
+        guard !filterTerm.isEmpty else { return all }
+        let term = filterTerm.lowercased()
+        return all.filter { packet in
+            let url = packet.requestInfo?.url?.lowercased() ?? ""
+            let method = packet.requestInfo?.requestMethod?.rawValue.lowercased() ?? ""
+            let status = packet.requestInfo?.statusCode?.lowercased() ?? ""
+            return url.contains(term) || method.contains(term) || status.contains(term)
+        }
     }
 
     // MARK: - Private
@@ -66,31 +67,6 @@ final class AppStore: ObservableObject {
             .selectedProjectController?.selectedDeviceController
         selectedPacket = BagelController.shared
             .selectedProjectController?.selectedDeviceController?.selectedPacket
-    }
-
-    // MARK: - Filtering (ported verbatim from PacketsViewModel)
-
-    private func performAddressFiltration(_ items: [BagelPacket]) -> [BagelPacket] {
-        guard !addressFilterTerm.isEmpty else { return items }
-        return items.filter { $0.requestInfo?.url?.contains(addressFilterTerm) ?? true }
-    }
-
-    private func performMethodFiltration(_ items: [BagelPacket]) -> [BagelPacket] {
-        guard !methodFilterTerm.isEmpty else { return items }
-        return items.filter {
-            $0.requestInfo?.requestMethod?.rawValue.lowercased()
-                .contains(methodFilterTerm.lowercased()) ?? true
-        }
-    }
-
-    private func performStatusFiltration(_ items: [BagelPacket]) -> [BagelPacket] {
-        guard !statusFilterTerm.isEmpty else { return items }
-        guard !statusFilterTerm.trimmingCharacters(in: .whitespaces).isEmpty else {
-            return items.filter {
-                $0.requestInfo?.statusCode?.trimmingCharacters(in: .whitespaces).isEmpty ?? true
-            }
-        }
-        return items.filter { $0.requestInfo?.statusCode?.contains(statusFilterTerm) ?? false }
     }
 
     // MARK: - Actions

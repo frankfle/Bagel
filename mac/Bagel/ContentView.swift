@@ -7,7 +7,6 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var store: AppStore
-    @State private var showInspector = false
 
     var body: some View {
         NavigationSplitView {
@@ -17,15 +16,15 @@ struct ContentView: View {
             DevicesView()
                 .navigationTitle("Devices")
         } detail: {
-            PacketsView()
-                .inspector(isPresented: $showInspector) {
+            VSplitView {
+                PacketsView()
+                    .frame(minHeight: 150)
+                if store.selectedPacket != nil {
                     DetailView()
-                        .inspectorColumnWidth(min: 280, ideal: 380, max: 640)
+                        .frame(minHeight: 200)
                 }
+            }
         }
         .navigationSplitViewStyle(.prominentDetail)
-        .onReceive(store.$selectedPacket) { packet in
-            if packet != nil { showInspector = true }
-        }
     }
 }

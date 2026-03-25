@@ -41,10 +41,23 @@ struct PacketsView: View {
     // MARK: - Filter Bar
 
     private var filterBar: some View {
-        HStack(spacing: 8) {
-            FilterTextField(title: "Address", text: $store.addressFilterTerm)
-            FilterTextField(title: "Status",  text: $store.statusFilterTerm)
-            FilterTextField(title: "Method",  text: $store.methodFilterTerm)
+        HStack(spacing: 6) {
+            Image(systemName: "magnifyingglass")
+                .foregroundStyle(.secondary)
+            TextField("Filter by URL, method, or status", text: $store.filterTerm)
+                .textFieldStyle(.plain)
+                .accessibilityLabel("Filter packets")
+                .accessibilityHint("Filter by URL, method, or status code")
+            if !store.filterTerm.isEmpty {
+                Button {
+                    store.filterTerm = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Clear filter")
+            }
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
@@ -73,13 +86,13 @@ struct PacketsView: View {
                         .foregroundStyle(packet.statusColor)
                         .monospacedDigit()
                 }
-                .width(min: 56, ideal: 72)
+                .width(60)
 
                 TableColumn("Method", value: \.methodDisplayValue) { packet in
                     Text(packet.methodDisplayValue)
                         .foregroundStyle(packet.methodColor)
                 }
-                .width(min: 48, ideal: 60)
+                .width(52)
 
                 TableColumn("URL", value: \.urlDisplayValue) { packet in
                     Text(packet.urlDisplayValue)
@@ -92,13 +105,13 @@ struct PacketsView: View {
                         .foregroundStyle(packet.durationColor)
                         .monospacedDigit()
                 }
-                .width(min: 56, ideal: 72)
+                .width(60)
 
                 TableColumn("Date", value: \.dateSortValue) { packet in
                     Text(packet.requestInfo?.startDate?.readable ?? "")
                         .foregroundStyle(.secondary)
                 }
-                .width(min: 80, ideal: 120)
+                .width(160)
             }
             .accessibilityLabel("Network packets")
             .onChange(of: store.filteredPackets.count) { _, _ in
@@ -106,20 +119,23 @@ struct PacketsView: View {
                     proxy.scrollTo(last.id, anchor: .bottom)
                 }
             }
-            // Track scroll position via GeometryReader sentinel at bottom
-            .safeAreaInset(edge: .bottom, spacing: 0) {
+            // Track scroll position via background GeometryReader sentinel
+            .background(alignment: .bottom) {
                 GeometryReader { geo in
-                    Color.clear.preference(
-                        key: BottomVisibilityKey.self,
-                        value: geo.frame(in: .global).minY
-                    )
+                    Color.clear
+                        .onChange(of: geo.frame(in: .global).minY) { _, minY in
+                            let newValue: Bool
+                            if let screenHeight = NSScreen.main?.visibleFrame.height {
+                                newValue = minY < screenHeight
+                            } else {
+                                newValue = true
+                            }
+                            if newValue != isAtBottom {
+                                isAtBottom = newValue
+                            }
+                        }
                 }
                 .frame(height: 1)
-                .onPreferenceChange(BottomVisibilityKey.self) { minY in
-                    if let screenHeight = NSScreen.main?.visibleFrame.height {
-                        isAtBottom = minY < screenHeight
-                    }
-                }
             }
         }
     }
@@ -137,29 +153,6 @@ struct PacketsView: View {
                 NSAccessibility.NotificationUserInfoKey.priority: NSAccessibilityPriorityLevel.low.rawValue,
             ]
         )
-    }
-}
-
-// MARK: - Filter TextField
-
-private struct FilterTextField: View {
-    let title: String
-    @Binding var text: String
-
-    var body: some View {
-        TextField(title, text: $text)
-            .textFieldStyle(.roundedBorder)
-            .accessibilityLabel("Filter by \(title.lowercased())")
-            .accessibilityHint("Packets matching this \(title.lowercased()) are shown")
-    }
-}
-
-// MARK: - Scroll position preference key
-
-private struct BottomVisibilityKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
     }
 }
 

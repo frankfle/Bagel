@@ -7,13 +7,16 @@ import SwiftUI
 
 enum DetailTab: String, CaseIterable, Identifiable {
     case overview         = "Overview"
-    case requestHeaders   = "Req Headers"
-    case requestParams    = "Req Params"
-    case requestBody      = "Req Body"
-    case responseHeaders  = "Res Headers"
-    case responseBody     = "Res Body"
+    case requestHeaders   = "Request Headers"
+    case requestParams    = "Request Params"
+    case requestBody      = "Request Body"
+    case responseHeaders  = "Response Headers"
+    case responseBody     = "Response Body"
 
     var id: String { rawValue }
+
+    static let requestTabs: [DetailTab] = [.overview, .requestHeaders, .requestParams, .requestBody]
+    static let responseTabs: [DetailTab] = [.responseHeaders, .responseBody]
 }
 
 struct DetailView: View {
@@ -25,14 +28,10 @@ struct DetailView: View {
             VStack(spacing: 0) {
                 packetHeader(packet)
                 Divider()
-                TabView(selection: $selectedTab) {
-                    ForEach(DetailTab.allCases) { tab in
-                        tabContent(for: tab, packet: packet)
-                            .tabItem { Text(tab.rawValue) }
-                            .tag(tab)
-                            .accessibilityLabel("Detail section: \(tab.rawValue)")
-                    }
-                }
+                tabBar
+                Divider()
+                tabContent(for: selectedTab, packet: packet)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         } else {
             ContentUnavailableView(
@@ -41,6 +40,39 @@ struct DetailView: View {
                 description: Text("Choose a packet from the list to inspect its details.")
             )
         }
+    }
+
+    // MARK: - Tab Bar
+
+    private var tabBar: some View {
+        HStack(spacing: 0) {
+            ForEach(DetailTab.requestTabs) { tab in
+                tabButton(tab)
+            }
+            Spacer()
+            ForEach(DetailTab.responseTabs) { tab in
+                tabButton(tab)
+            }
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(.bar)
+    }
+
+    private func tabButton(_ tab: DetailTab) -> some View {
+        Button {
+            selectedTab = tab
+        } label: {
+            Text(tab.rawValue)
+                .font(.system(.subheadline))
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
+                .background(selectedTab == tab ? Color.accentColor.opacity(0.2) : Color.clear)
+                .cornerRadius(6)
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Detail section: \(tab.rawValue)")
+        .accessibilityAddTraits(selectedTab == tab ? .isSelected : [])
     }
 
     // MARK: - Header

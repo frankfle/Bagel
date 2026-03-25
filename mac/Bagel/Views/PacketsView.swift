@@ -40,6 +40,10 @@ struct PacketsView: View {
 
     // MARK: - Filter Bar
 
+    private var exportLabel: String {
+        store.filterTerm.isEmpty ? "Export All Requests" : "Export Filtered Requests"
+    }
+
     private var filterBar: some View {
         HStack(spacing: 6) {
             Image(systemName: "magnifyingglass")
@@ -58,9 +62,38 @@ struct PacketsView: View {
                 .buttonStyle(.plain)
                 .accessibilityLabel("Clear filter")
             }
+            Divider()
+                .frame(height: 16)
+            Button {
+                exportCSV()
+            } label: {
+                Label(exportLabel, systemImage: "square.and.arrow.up")
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.secondary)
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
+    }
+
+    // MARK: - Export
+
+    private func exportCSV() {
+        let panel = NSSavePanel()
+        panel.title = exportLabel
+        panel.nameFieldStringValue = "bagel-export.csv"
+        panel.allowedContentTypes = [.commaSeparatedText]
+        panel.canCreateDirectories = true
+
+        guard panel.runModal() == .OK, let url = panel.url else { return }
+
+        let csv = CSVExporter.export(sortedPackets)
+        do {
+            try csv.write(to: url, atomically: true, encoding: .utf8)
+        } catch {
+            let alert = NSAlert(error: error)
+            alert.runModal()
+        }
     }
 
     // MARK: - Packet Table

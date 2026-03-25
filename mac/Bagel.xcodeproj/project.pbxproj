@@ -22,6 +22,7 @@
 		BC7E67EB216E193300E1289E /* DataTextRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E67EA216E193300E1289E /* DataTextRepresentation.swift */; };
 		BCA60B41216201B900B9DCAD /* BagelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA60B40216201B900B9DCAD /* BagelConfiguration.swift */; };
 		BCBD86E2215916C9009CBEA7 /* BagelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBD86E1215916C9009CBEA7 /* BagelController.swift */; };
+		FF00FF0200000001000000FF /* CSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF00FF0100000001000000FF /* CSVExporter.swift */; };
 		BCBD86E4215916E0009CBEA7 /* BagelProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBD86E3215916E0009CBEA7 /* BagelProjectController.swift */; };
 		BCBD86E62159172B009CBEA7 /* BagelDeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBD86E52159172B009CBEA7 /* BagelDeviceController.swift */; };
 		BCD0E027210F5E0D00CE5C7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD0E026210F5E0D00CE5C7B /* AppDelegate.swift */; };
@@ -93,6 +94,7 @@
 		BC7E67EA216E193300E1289E /* DataTextRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTextRepresentation.swift; sourceTree = "<group>"; };
 		BCA60B40216201B900B9DCAD /* BagelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagelConfiguration.swift; sourceTree = "<group>"; };
 		BCBD86E1215916C9009CBEA7 /* BagelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagelController.swift; sourceTree = "<group>"; };
+		FF00FF0100000001000000FF /* CSVExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVExporter.swift; sourceTree = "<group>"; };
 		BCBD86E3215916E0009CBEA7 /* BagelProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagelProjectController.swift; sourceTree = "<group>"; };
 		BCBD86E52159172B009CBEA7 /* BagelDeviceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagelDeviceController.swift; sourceTree = "<group>"; };
 		BCD0E023210F5E0D00CE5C7B /* Bagel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bagel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -421,6 +423,7 @@
 			children = (
 				BCEB9AA4217C951C008BBF3C /* ContentRepresentation */,
 				BCFC854A213848F2001EC6D7 /* BagelController */,
+				FF00FF0100000001000000FF /* CSVExporter.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				FF00AA0500000003000000FF /* ContentView.swift in Sources */,
 				FF00AA0700000004000000FF /* Identifiable+BagelModels.swift in Sources */,
 				BCD0E027210F5E0D00CE5C7B /* AppDelegate.swift in Sources */,
+				FF00FF0200000001000000FF /* CSVExporter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

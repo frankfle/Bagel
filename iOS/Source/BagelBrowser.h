@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSMutableArray* services;
 @property (nonatomic, strong) NSNetServiceBrowser* serviceBrowser;
 @property (nonatomic, strong) NSMutableArray<nw_connection_t>* connections;
+@property (nonatomic, strong) NSMutableArray<nw_connection_t>* readyConnections;
 
 - (instancetype)initWithConfiguration:(BagelConfiguration*)configuration;
 

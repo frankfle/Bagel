@@ -23,6 +23,14 @@ class BagelPublisher: NSObject {
 
     func startPublishing() {
 
+        // Cancel any existing listener before creating a new one
+        if let existingListener = self.listener {
+            existingListener.stateUpdateHandler = nil
+            existingListener.newConnectionHandler = nil
+            existingListener.cancel()
+            self.listener = nil
+        }
+
         self.connections = []
 
         do {
@@ -107,13 +115,11 @@ class BagelPublisher: NSObject {
 
     private func removeConnection(_ connection: NWConnection) {
 
+        // Guard against double-removal of the same connection
+        guard self.connections.contains(where: { $0 === connection }) else { return }
+
         connection.cancel()
         self.connections.removeAll { $0 === connection }
-
-        if self.connections.isEmpty {
-            self.listener?.cancel()
-            self.tryPublishAgain()
-        }
     }
 
     func lengthOf(data: Data) -> Int {

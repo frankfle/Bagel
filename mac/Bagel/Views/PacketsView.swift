@@ -152,23 +152,12 @@ struct PacketsView: View {
                     proxy.scrollTo(last.id, anchor: .bottom)
                 }
             }
-            // Track scroll position via background GeometryReader sentinel
-            .background(alignment: .bottom) {
-                GeometryReader { geo in
-                    Color.clear
-                        .onChange(of: geo.frame(in: .global).minY) { _, minY in
-                            let newValue: Bool
-                            if let screenHeight = NSScreen.main?.visibleFrame.height {
-                                newValue = minY < screenHeight
-                            } else {
-                                newValue = true
-                            }
-                            if newValue != isAtBottom {
-                                isAtBottom = newValue
-                            }
-                        }
-                }
-                .frame(height: 1)
+            // Track whether the table bottom is visible for auto-scroll
+            .overlay(alignment: .bottom) {
+                Color.clear
+                    .frame(height: 1)
+                    .onAppear { isAtBottom = true }
+                    .onDisappear { isAtBottom = false }
             }
         }
     }
@@ -200,7 +189,7 @@ extension BagelPacket {
         if let errorCode = requestInfo?.errorCode {
             return shortErrorLabel(domain: requestInfo?.errorDomain, code: errorCode).uppercased()
         }
-        return ""
+        return "🥯"
     }
 
     var methodDisplayValue: String { requestInfo?.requestMethod?.rawValue ?? "" }
@@ -226,7 +215,7 @@ extension BagelPacket {
             if codeInt >= 400 { return Color("statusRed") }
         }
         if requestInfo?.errorCode != nil { return Color("statusRed") }
-        return .primary
+        return .secondary
     }
 
     var methodColor: Color {

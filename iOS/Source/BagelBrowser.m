@@ -31,6 +31,7 @@
     if (self) {
         self.configuration = configuration;
         self.connections = [[NSMutableArray alloc] init];
+        self.readyConnections = [[NSMutableArray alloc] init];
         [self startBrowsing];
     }
 
@@ -43,6 +44,12 @@
         [self.connections removeAllObjects];
     } else {
         self.connections = [[NSMutableArray alloc] init];
+    }
+
+    if (self.readyConnections) {
+        [self.readyConnections removeAllObjects];
+    } else {
+        self.readyConnections = [[NSMutableArray alloc] init];
     }
 
     if (self.services) {
@@ -125,7 +132,11 @@
     __weak typeof(self) weakSelf = self;
 
     nw_connection_set_state_changed_handler(connection, ^(nw_connection_state_t state, nw_error_t error) {
-        if (state == nw_connection_state_failed || state == nw_connection_state_cancelled) {
+        if (state == nw_connection_state_ready) {
+            if (![weakSelf.readyConnections containsObject:connection]) {
+                [weakSelf.readyConnections addObject:connection];
+            }
+        } else if (state == nw_connection_state_failed || state == nw_connection_state_cancelled) {
             [weakSelf removeConnection:connection];
         }
     });
@@ -138,6 +149,7 @@
 {
     nw_connection_cancel(connection);
     [self.connections removeObject:connection];
+    [self.readyConnections removeObject:connection];
 }
 
 - (void)sendPacket:(BagelRequestPacket*)packet
@@ -165,8 +177,8 @@
             DISPATCH_DATA_DESTRUCTOR_DEFAULT
         );
 
-        for (nw_connection_t connection in self.connections) {
-            nw_connection_send(connection, sendData, NW_CONNECTION_DEFAULT_MESSAGE_CONTEXT, true, ^(nw_error_t error) {
+        for (nw_connection_t connection in self.readyConnections) {
+            nw_connection_send(connection, sendData, NW_CONNECTION_DEFAULT_MESSAGE_CONTEXT, false, ^(nw_error_t error) {
                 if (error) {
                     NSLog(@"Bagel -> Send error: %@", error);
                 }

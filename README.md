@@ -1,5 +1,5 @@
 # Bagel
-![Bagel](https://github.com/frankfle/Bagel/blob/master/assets/header.png?raw=true)
+![Bagel](https://github.com/frankfle/Bagel/blob/main/assets/header.png?raw=true)
 <p align="center">
     <a href="https://github.com/frankfle/Bagel/releases" alt="Version">
         <img src="https://img.shields.io/github/release/frankfle/Bagel.svg" /></a>

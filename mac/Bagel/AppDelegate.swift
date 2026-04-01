@@ -11,7 +11,9 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        for window in NSApplication.shared.windows {
+            window.standardWindowButton(.closeButton)?.isEnabled = false
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

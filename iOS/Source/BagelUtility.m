@@ -19,7 +19,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if __has_include(<UIKit/UIKit.h>)
 @import UIKit;
+#endif
+@import Foundation;
+#if TARGET_OS_OSX
+#include <sys/sysctl.h>
+#endif
 #import "BagelUtility.h"
 
 @implementation BagelUtility
@@ -41,17 +47,35 @@
 
 + (NSString*)deviceName
 {
-  return [UIDevice currentDevice].name;
+#if TARGET_OS_OSX
+    return [[NSProcessInfo processInfo] hostName];
+#else
+    return [UIDevice currentDevice].name;
+#endif
 }
 
 + (NSString*)deviceDescription
 {
+#if TARGET_OS_OSX
+    NSString* model = @"Mac";
+    size_t size;
+    sysctlbyname("hw.model", NULL, &size, NULL, 0);
+    if (size > 0) {
+        char *machine = malloc(size);
+        sysctlbyname("hw.model", machine, &size, NULL, 0);
+        model = [NSString stringWithUTF8String:machine];
+        free(machine);
+    }
+    NSOperatingSystemVersion version = [[NSProcessInfo processInfo] operatingSystemVersion];
+    return [NSString stringWithFormat:@"%@ macOS %ld.%ld.%ld",
+            model, (long)version.majorVersion, (long)version.minorVersion, (long)version.patchVersion];
+#else
     NSString* information = @"";
-
     information = [UIDevice currentDevice].model;
     information = [NSString stringWithFormat:@"%@ %@", information, [UIDevice currentDevice].systemName];
     information = [NSString stringWithFormat:@"%@ %@", information, [UIDevice currentDevice].systemVersion];
     return information;
+#endif
 }
 
 @end

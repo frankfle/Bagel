@@ -8,16 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		0B7ECDF62F6A39AB00A73BB5 /* Bagel in Frameworks */ = {isa = PBXBuildFile; productRef = 0B7ECDF52F6A39AB00A73BB5 /* Bagel */; };
+		0BAA00000100000000000006 /* Bagel in Frameworks */ = {isa = PBXBuildFile; productRef = 0BAA0000010000000000000B /* Bagel */; };
+		0BBB00000100000000000006 /* Bagel in Frameworks */ = {isa = PBXBuildFile; productRef = 0BBB0000010000000000000B /* Bagel */; };
+		0BCC00000100000000000006 /* Bagel in Frameworks */ = {isa = PBXBuildFile; productRef = 0BCC0000010000000000000B /* Bagel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0B7ECDE62F6A392100A73BB5 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BAA00000100000000000001 /* test-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BBB00000100000000000001 /* test-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BCC00000100000000000001 /* test-visionOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-visionOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0B7ECDE82F6A392100A73BB5 /* test */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = test;
+			sourceTree = "<group>";
+		};
+		0BAA00000100000000000002 /* test-macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "test-macOS";
+			sourceTree = "<group>";
+		};
+		0BBB00000100000000000002 /* test-tvOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "test-tvOS";
+			sourceTree = "<group>";
+		};
+		0BCC00000100000000000002 /* test-visionOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "test-visionOS";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -31,6 +52,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0BAA00000100000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAA00000100000000000006 /* Bagel in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BBB00000100000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BBB00000100000000000006 /* Bagel in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BCC00000100000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BCC00000100000000000006 /* Bagel in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -38,6 +83,9 @@
 			isa = PBXGroup;
 			children = (
 				0B7ECDE82F6A392100A73BB5 /* test */,
+				0BAA00000100000000000002 /* test-macOS */,
+				0BBB00000100000000000002 /* test-tvOS */,
+				0BCC00000100000000000002 /* test-visionOS */,
 				0B7ECDE72F6A392100A73BB5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,6 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				0B7ECDE62F6A392100A73BB5 /* test.app */,
+				0BAA00000100000000000001 /* test-macOS.app */,
+				0BBB00000100000000000001 /* test-tvOS.app */,
+				0BCC00000100000000000001 /* test-visionOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +127,75 @@
 			productReference = 0B7ECDE62F6A392100A73BB5 /* test.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0BAA00000100000000000007 /* test-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BAA0000010000000000000A /* Build configuration list for PBXNativeTarget "test-macOS" */;
+			buildPhases = (
+				0BAA00000100000000000003 /* Sources */,
+				0BAA00000100000000000004 /* Frameworks */,
+				0BAA00000100000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0BAA00000100000000000002 /* test-macOS */,
+			);
+			name = "test-macOS";
+			packageProductDependencies = (
+				0BAA0000010000000000000B /* Bagel */,
+			);
+			productName = "test-macOS";
+			productReference = 0BAA00000100000000000001 /* test-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0BBB00000100000000000007 /* test-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BBB0000010000000000000A /* Build configuration list for PBXNativeTarget "test-tvOS" */;
+			buildPhases = (
+				0BBB00000100000000000003 /* Sources */,
+				0BBB00000100000000000004 /* Frameworks */,
+				0BBB00000100000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0BBB00000100000000000002 /* test-tvOS */,
+			);
+			name = "test-tvOS";
+			packageProductDependencies = (
+				0BBB0000010000000000000B /* Bagel */,
+			);
+			productName = "test-tvOS";
+			productReference = 0BBB00000100000000000001 /* test-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0BCC00000100000000000007 /* test-visionOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BCC0000010000000000000A /* Build configuration list for PBXNativeTarget "test-visionOS" */;
+			buildPhases = (
+				0BCC00000100000000000003 /* Sources */,
+				0BCC00000100000000000004 /* Frameworks */,
+				0BCC00000100000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0BCC00000100000000000002 /* test-visionOS */,
+			);
+			name = "test-visionOS";
+			packageProductDependencies = (
+				0BCC0000010000000000000B /* Bagel */,
+			);
+			productName = "test-visionOS";
+			productReference = 0BCC00000100000000000001 /* test-visionOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -87,6 +207,15 @@
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					0B7ECDE52F6A392100A73BB5 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					0BAA00000100000000000007 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					0BBB00000100000000000007 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					0BCC00000100000000000007 = {
 						CreatedOnToolsVersion = 26.3;
 					};
 				};
@@ -109,6 +238,9 @@
 			projectRoot = "";
 			targets = (
 				0B7ECDE52F6A392100A73BB5 /* test */,
+				0BAA00000100000000000007 /* test-macOS */,
+				0BBB00000100000000000007 /* test-tvOS */,
+				0BCC00000100000000000007 /* test-visionOS */,
 			);
 		};
 /* End PBXProject section */
@@ -121,10 +253,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0BAA00000100000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BBB00000100000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BCC00000100000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0B7ECDE22F6A392100A73BB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BAA00000100000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BBB00000100000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BCC00000100000000000003 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -191,7 +365,6 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -247,7 +420,6 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -275,6 +447,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -307,6 +480,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -314,6 +488,180 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0BAA00000100000000000008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel.test.macOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		0BAA00000100000000000009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel.test.macOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		0BBB00000100000000000008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel.test.tvOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 16.0;
+			};
+			name = Debug;
+		};
+		0BBB00000100000000000009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel.test.tvOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 16.0;
+			};
+			name = Release;
+		};
+		0BCC00000100000000000008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel.test.visionOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		0BCC00000100000000000009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yagiz.Bagel.test.visionOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
@@ -338,6 +686,33 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		0BAA0000010000000000000A /* Build configuration list for PBXNativeTarget "test-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BAA00000100000000000008 /* Debug */,
+				0BAA00000100000000000009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BBB0000010000000000000A /* Build configuration list for PBXNativeTarget "test-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BBB00000100000000000008 /* Debug */,
+				0BBB00000100000000000009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BCC0000010000000000000A /* Build configuration list for PBXNativeTarget "test-visionOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BCC00000100000000000008 /* Debug */,
+				0BCC00000100000000000009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
@@ -349,6 +724,18 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		0B7ECDF52F6A39AB00A73BB5 /* Bagel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Bagel;
+		};
+		0BAA0000010000000000000B /* Bagel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Bagel;
+		};
+		0BBB0000010000000000000B /* Bagel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Bagel;
+		};
+		0BCC0000010000000000000B /* Bagel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Bagel;
 		};

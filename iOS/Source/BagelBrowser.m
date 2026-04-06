@@ -60,7 +60,7 @@
 
     self.serviceBrowser = [[NSNetServiceBrowser alloc] init];
     [self.serviceBrowser setDelegate:self];
-#if TARGET_IPHONE_SIMULATOR
+#if TARGET_OS_SIMULATOR || TARGET_OS_OSX
     [self connectToLocal];
 #else
     [self.serviceBrowser searchForServicesOfType:self.configuration.netserviceType inDomain:self.configuration.netserviceDomain];

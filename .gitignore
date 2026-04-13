@@ -149,3 +149,6 @@ iOSInjectionProject/
 
 ### Let's ignore Claude Code stuff
 .claude
+
+### Ignore the build folder for the Mac
+dist

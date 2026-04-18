@@ -5,6 +5,9 @@ case "$1" in
     xcodebuild -workspace mac/Bagel.xcworkspace -scheme Bagel clean
     xcodebuild -workspace mac/Bagel.xcworkspace -scheme Bagel build
     ;;
+  dmg)
+    ./build-dmg.sh
+    ;;
   dist)
     ARCHIVE_PATH=/tmp/Bagel.xcarchive
     EXPORT_PATH="$(pwd)/dist"
@@ -22,7 +25,7 @@ case "$1" in
     xcodebuild -project test/test.xcodeproj -scheme test -destination 'generic/platform=iOS Simulator' build
     ;;
   *)
-    echo "Usage: $0 {mac|dist|library|test}"
+    echo "Usage: $0 {mac|dmg|dist|library|test}"
     exit 1
     ;;
 esac

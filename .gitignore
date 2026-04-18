@@ -147,8 +147,9 @@ iOSInjectionProject/
 ### Mac Stuff
 .DS_Store
 
-### Let's ignore Claude Code stuff
+### Let's ignore Agent stuff
 .claude
+.opencode/plans
 
 ### Ignore the build folder for the Mac
 dist
